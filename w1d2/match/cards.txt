@@ -1,0 +1,8 @@
+bottle
+flower
+bird
+dog
+cup
+cat
+skyscraper
+mouse
