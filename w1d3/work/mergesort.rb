@@ -1,18 +1,11 @@
-require 'byebug'
 def mergesort(array)
-  # debugger
   midpoint = array.length / 2
   left_side = array[0...midpoint]
   right_side = array[midpoint..-1]
 
   return array if array.length <= 1
 
-  # if left.length == 1 && right.length == 1 && left.first > right.first
-  #   left, right = right, left
-  # end
-
   merge(mergesort(left_side), mergesort(right_side))
-
 end
 
 def merge(left, right)
