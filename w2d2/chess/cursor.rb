@@ -101,10 +101,9 @@ class Cursor
   end
 
   def update_pos(diff)
-    # p (@cursor_pos.first + diff.first).to_s + "," + (@cursor_pos.last + diff.last).to_s
+    p "-------update pos------"
     new_pos = [@cursor_pos.first + diff.first, @cursor_pos.last + diff.last]
     if in_bounds(new_pos)
-      # debugger
       @cursor_pos = new_pos
       p @cursor_pos
     else
@@ -115,5 +114,5 @@ class Cursor
   def toggle_selected
     @selected = !@selected
   end
-  
+
 end

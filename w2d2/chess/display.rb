@@ -1,16 +1,21 @@
 require "colorize"
 require_relative"cursor"
+require_relative "board"
 require"byebug"
 
 class Display
   attr_accessor :cursor, :board
-  def initialize(board)
-    @cursor = Cursor.new([0, 0], board, false)
+  def initialize(board = Board.new)
     @board = board
+    @cursor = Cursor.new([0, 0], board, false)
+  end
+
+  def move(new_pos)
+    @cursor.get_input 
   end
 
   def build_grid
-    @board.map.with_index do |row, i|
+    @board.board.map.with_index do |row, i|
       build_row(row, i)
     end
   end
@@ -23,25 +28,22 @@ class Display
   end
 
   def colors_for(i, j)
+    p @cursor
+    p "--------" + @cursor.cursor_pos.to_s
     if [i, j] == cursor.cursor_pos && cursor.selected
       bg = :light_green
     elsif [i, j] == cursor.cursor_pos
       bg = :light_red
     elsif (i + j).odd?
-      bg = :light_blue
+      bg = :light_black
     else
-      bg = :light_yellow
+      bg = :light_white
     end
     { background: bg }
   end
 
 
   def render
-    # puts "  #{(0..8).to_a.join(" ")}"
-    # board.each_with_index do |row, i|
-    #   puts "#{i} #{row.join(" ")}"
-    # end
-    # debugger
 
     # board.each_with_index do |row, i|
     #   row_output = ""
@@ -58,13 +60,13 @@ class Display
     #   end
     #   puts row_output
     # end
-    # @cursor.get_input
-    # p @cursor.cursor_pos
 
     system("clear")
     puts "Arrow keys, WASD, or vim to move, space or enter to confirm."
     build_grid.each { |row| puts row.join }
 
-    @cursor.get_input
+    # @cursor.get_input
   end
 end
+# dp = Display.new
+# dp.render
