@@ -1,8 +1,15 @@
 require 'byebug'
 
+# def subsets(array)
+#   return [[]] if array.empty?
+#   debugger
+#   subs = subsets(array.take(array.count-1))
+#   subs.concat(subs.map { |sub| sub + [array.last] })
+# end
+
 def subsets(array)
-  return [[]] if array.empty?
-  debugger
+  return [[]] if array.nil
+
   subs = subsets(array.take(array.count-1))
   subs.concat(subs.map { |sub| sub + [array.last] })
 end
