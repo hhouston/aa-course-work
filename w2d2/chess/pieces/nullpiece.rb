@@ -1,7 +1,9 @@
 require_relative 'piece'
-
+require "singleton"
 class NullPiece < Piece
-  def initalize(*args)
-    super(*args)
+  include Singleton
+  def initialize
+    @color = "none"
+    @value = " "
   end
 end

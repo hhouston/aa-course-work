@@ -1,6 +1,8 @@
 require_relative 'piece'
+require_relative 'slidingpiece'
 
 class Bishop < Piece
+  include SlidingPiece
 
   def initalize(*args)
     super(*args)
@@ -14,4 +16,9 @@ class Bishop < Piece
     end
 
   end
+
+  def move_dirs
+    diagonal_dirs
+  end
+
 end

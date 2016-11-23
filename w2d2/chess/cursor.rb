@@ -78,21 +78,13 @@ class Cursor
 
   def handle_key(key)
     case key
-    when :return || :space
-      @cursor_pos
+    when :return, :space
       toggle_selected
-    when :left
-      update_pos(MOVES[:left])
-    when :right
-      update_pos(MOVES[:right])
-    when :down
-      update_pos(MOVES[:down])
-    when :up
-      update_pos(MOVES[:up])
+      @cursor_pos
+    when :left, :right, :down, :up
+      update_pos(MOVES[key])
     when :ctrl_c
       Process.exit
-    else
-      nil
     end
   end
 
@@ -101,7 +93,6 @@ class Cursor
   end
 
   def update_pos(diff)
-    p "-------update pos------"
     new_pos = [@cursor_pos.first + diff.first, @cursor_pos.last + diff.last]
     if in_bounds(new_pos)
       @cursor_pos = new_pos
@@ -109,6 +100,7 @@ class Cursor
     else
       raise RangeError.new "Out of bounds"
     end
+    nil
   end
 
   def toggle_selected

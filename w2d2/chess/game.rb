@@ -12,12 +12,10 @@ class Game
 
     @display.render
     while true
-      # byebug
-      # @display.cursor.get_input
-        sleep 4
-        p 'now'
-        @board.move_piece([0,0],[5,5])
-        @display.render
+
+      @display.cursor.get_input
+
+      @display.render
     end
 
   end

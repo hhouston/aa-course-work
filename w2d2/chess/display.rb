@@ -11,7 +11,7 @@ class Display
   end
 
   def move(new_pos)
-    @cursor.get_input 
+    @cursor.get_input
   end
 
   def build_grid
@@ -28,8 +28,6 @@ class Display
   end
 
   def colors_for(i, j)
-    p @cursor
-    p "--------" + @cursor.cursor_pos.to_s
     if [i, j] == cursor.cursor_pos && cursor.selected
       bg = :light_green
     elsif [i, j] == cursor.cursor_pos

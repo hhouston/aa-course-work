@@ -1,6 +1,8 @@
 require_relative 'piece'
+require_relative 'slidingpiece'
 
 class Queen < Piece
+  include SlidingPiece
 
   def initalize(*args)
     super(*args)
@@ -13,4 +15,10 @@ class Queen < Piece
       "♛".colorize(:cyan)
     end
   end
+
+  def move_dirs
+    horiz_and_vert_dirs
+    diagonal_dirs
+  end
+
 end
