@@ -7,11 +7,11 @@ class ShortenedUrl < ActiveRecord::Base
   foreign_key: :user_id,
   class_name: :User
 
-  has_many :visits
-
-  has_many :vistors,
-  through: :visits,
-  source: :visitor
+  # has_many :visits
+  #
+  # has_many :vistors,
+  # through: :visits,
+  # source: :visitor
 
   # has_many :visited_urls,
   # primary_key: :id,
@@ -21,6 +21,36 @@ class ShortenedUrl < ActiveRecord::Base
   # has_many :total_urls,
   # through: :visited_urls,
   # source: :
+
+
+
+has_many :visits,
+primary_key: :id,
+foreign_key: :url_id,
+class_name: :Visit
+
+has_many :visted_users,
+through: :visits,
+source: :visited_urls
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   def self.random_code
     random_code = SecureRandom::urlsafe_base64(12)
