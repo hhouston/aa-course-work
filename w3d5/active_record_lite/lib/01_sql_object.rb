@@ -5,6 +5,7 @@ require 'byebug'
 # of this project. It was only a warm up.
 
 class SQLObject
+
   def self.columns
     return @columns if @columns
 
