@@ -1,11 +1,21 @@
+# == Schema Information
+#
+# Table name: executives
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Executive < ActiveRecord::Base
 
-  has_many :board_memberships,
-  class_name: :BoardMembership,
+  has_many :memberships,
   foreign_key: :member_id,
-  primary_key: :id
+  primary_key: :id,
+  class_name: :BoardMembership
 
   has_many :boards,
-  through: :board_memberships,
+  through: :memberships,
   source: :board
 end
