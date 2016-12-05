@@ -12,6 +12,10 @@
 #  pos         :integer      not null, primary key
 #  stop_id     :integer
 
+# Give a distinct list of the stops that can be reached from 'Craiglockhart'
+# by taking one bus, including 'Craiglockhart' itself. Include the stop name,
+# as well as the company and bus no. of the relevant service.
+
 require_relative './sqlzoo.rb'
 
 def num_stops
@@ -234,6 +238,7 @@ def start_at_craiglockhart
         WHERE
           stops.name = 'Craiglockhart'
       )
+
   SQL
 end
 

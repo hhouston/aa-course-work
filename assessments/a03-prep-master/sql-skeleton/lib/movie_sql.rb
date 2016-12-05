@@ -24,6 +24,7 @@ def bearded_films
     from movies m
     join castings c on c.movie_id = m.id
     join actors a on a.id = c.actor_id
+
     where a.name = 'Chuck Norris'
   SQL
 end
@@ -33,11 +34,21 @@ end
 def zombie_cast
   MovieDatabase.execute(<<-SQL)
     select a.name
+
+    from movies m
+    join castings c on c.movie_id = m.id
+    join actors a on a.id = c.actor_id
+
+    where m.id = (
+
+    select m.id
     from movies m
     join castings c on c.movie_id = m.id
     join actors a on a.id = c.actor_id
     where m.title = 'Zombies of the Stratosphere'
+)
     order by a.name
+
   SQL
 end
 
@@ -47,13 +58,17 @@ end
 def biggest_years_for_little_danny
   MovieDatabase.execute(<<-SQL)
     select m.yr, count(m.id) as count
+
     from movies m
     join castings c on c.movie_id = m.id
     join actors a on a.id = c.actor_id
+
     where a.name = 'Danny DeVito'
-    group by yr
+
+    group by m.yr
     having count(m.id) > 2
-    order by yr
+
+    order by m.yr
   SQL
 end
 
@@ -61,17 +76,14 @@ end
 # star role. Order by movie title.
 def more_cage_please
   MovieDatabase.execute(<<-SQL)
-    select distinct m.title
+
+    select m.title
     from movies m
     join castings c on c.movie_id = m.id
     join actors a on a.id = c.actor_id
-    where m.id in (
-      select m.id
-      from movies m
-      join castings c on c.movie_id = m.id
-      join actors a on a.id = c.actor_id
-      where a.name = 'Nicolas Cage' and c.ord != 1
-    )
+
+    where a.name = 'Nicolas Cage' and c.ord != 1
+
     order by m.title
   SQL
 end
@@ -80,13 +92,15 @@ end
 # films. Order by movie title.
 def who_is_florence_lawrence
   MovieDatabase.execute(<<-SQL)
+
     select m.title, a.name
     from movies m
     join castings c on c.movie_id = m.id
     join actors a on a.id = c.actor_id
-    where m.yr = 1908 and c.ord = 1
-    order by m.title
 
+    where c.ord = 1 and m.yr = 1908
+
+    order by m.title
   SQL
 end
 
@@ -95,21 +109,14 @@ end
 # 'num_bad_actors'.
 def count_bad_actors
   MovieDatabase.execute(<<-SQL)
-    select distinct count(a.name) as num_bad_actors
-    from actors a
-    left join castings c on c.movie_id = a.id
-    join movies m on m.id = c.actor_id
 
-    where m.id not in(
+  select count(a.name) as 'num_bad_actors'
 
-    select m2.id
-    from movies m2
-    join castings c2 on c2.movie_id = m2.id
-    join actors a2 on a2.id = c2.actor_id
+  from actors a
+  left join castings c on a.id = c.actor_id
 
-  )
-
-SQL
+  where c.actor_id is null
+  SQL
 end
 
 # Obtain a list in alphabetical order of actors who've had exactly 20
@@ -121,9 +128,8 @@ def twenty_roles
     from movies m
     join castings c on c.movie_id = m.id
     join actors a on a.id = c.actor_id
-
     where c.ord = 1
-    group by (a.name)
+    group by a.name
     having count(a.name) = 20
     order by a.name
   SQL
@@ -134,17 +140,16 @@ end
 def chris_is_missed
   MovieDatabase.execute(<<-SQL)
     select m.title, a.name
-
     from movies m
     join castings c on c.movie_id = m.id
     join actors a on a.id = c.actor_id
 
-    where m.id in (
-      select m2.id
-      from movies m2
-      join castings c2 on c2.movie_id = m2.id
-      join actors a2 on a2.id = c2.actor_id
-      where a2.name = 'Chris Farley'
-    ) and c.ord = 1
+    where c.ord = 1 and m.id in (
+      select m.id
+      from movies m
+      join castings c on c.movie_id = m.id
+      join actors a on a.id = c.actor_id
+      where a.name = 'Chris Farley'
+    )
   SQL
 end

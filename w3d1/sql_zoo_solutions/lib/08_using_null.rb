@@ -13,6 +13,10 @@
 #  id          :integer      not null, primary key
 #  name        :string       not null
 
+# Use CASE to show the name of each teacher followed by 'Sci' if
+# the the teacher is in dept 1 or 2, 'Art' if the dept is 3, and
+# 'None' otherwise.
+
 require_relative './sqlzoo.rb'
 
 def null_dept

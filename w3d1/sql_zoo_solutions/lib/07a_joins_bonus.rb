@@ -21,6 +21,9 @@
 # posn         :integer      not null
 # song         :string
 
+# Select the artist who has recorded the most rock albums, as well as the
+# number of albums. HINT: use LIKE '%Rock%' in your query.
+
 require_relative './sqlzoo.rb'
 
 def alison_artist
