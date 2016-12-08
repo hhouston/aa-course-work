@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
     if user.save
       login_user!(user)
-      flash[:messages] = "You signed up!"
+      flash[:messages] = ["You signed up!"]
       redirect_to cats_url
     else
       flash.now[:messages] = user.errors.full_messages
