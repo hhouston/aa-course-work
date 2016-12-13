@@ -1,0 +1,22 @@
+<h1>new post</h1>
+
+<form action="<%=posts_url%>" method="post">
+  <label for="title">Title: </label>
+  <input type="text" name="post[title]">
+
+  <br>
+
+  <label>URL: </label>
+  <input type="text" name="post[url]">
+
+  <br>
+
+  <label>Content: </label>
+  <input type="text" name="post[content]">
+
+  <br>
+
+  <input type="hidden" name="post[sub_id]" value="<%= @post.sub.id%> ">
+
+  <input type="submit">
+</form>

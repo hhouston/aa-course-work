@@ -1,0 +1,12 @@
+<h1><%=link_to"#{@post.title}", post_url(@post) %></h1>
+<h3><%= @post.url %></h3>
+<textarea>
+  <%= @post.content %>">
+</textarea>
+
+<br>
+<label>Posts</label>
+
+<ul>
+  <li><%= @post.sub.title %></li>
+</ul>

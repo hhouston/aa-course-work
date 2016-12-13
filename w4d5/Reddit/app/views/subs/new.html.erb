@@ -1,0 +1,17 @@
+<h1>new sub</h1>
+
+<form action="subs_url" method="post">
+  <label for="title">Title: </label>
+  <input type="text" name="sub[title]">
+
+  <br>
+
+  <label for="desc">Description: </label>
+  <input type="text" name="sub[description]">
+
+  <br>
+
+  <input type="hidden" name="sub[user_id]" value="<%= current_user.id %>">
+
+  <input type="submit">
+</form>
