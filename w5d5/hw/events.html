@@ -1,0 +1,35 @@
+<ul id="cats"></ul>
+
+<form id="cat-form">
+  <label>
+    Name
+    <input type="text" name="cat[name]" id="cat_name">
+  </label>
+
+  <input type="submit" value="Create Cat!">
+</form>
+
+<script>
+  const catFormEl = document.getElementById("cat-form");
+  catFormEl.addEventListener("submit", event => {
+    // **cancel** the event; if the event were not canceled the browser
+    // would try to submit the form for real.
+    event.preventDefault();
+
+    // Get the name input element (type `HTMLInputElement`), get the
+    // value, and clear it.
+    const catNameInputEl = document.getElementById("cat_name")
+    const catName = catNameInputEl.value;
+    catNameInputEl.value = "";
+
+    // Get the ul of cats.
+    const ul = document.getElementById("cats");
+    // create an li element
+    const li = document.createElement("li");
+    // set the text of the li to be the value of the input field
+    li.textContent = catName;
+
+    // insert it as the last item in the ul.
+    ul.appendChild(li);
+  });
+</script>
