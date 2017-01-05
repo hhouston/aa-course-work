@@ -1,0 +1,116 @@
+/*Clock*/
+.clock{
+  font-size: 28px;
+  color: white;
+  font-family: Orbitron;
+  width: 550px;
+  height: 94px;
+  border: 2px solid black;
+  margin: 0 20px 20px 20px;
+  padding: 10px;
+  background-image: url(https://hd.unsplash.com/photo-1445109673451-c511bb51bd17);
+  background-size: cover;
+  background-position-y: 20%;
+}
+
+.clock p{
+  margin: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/*weather*/
+
+.weather {
+  border: black solid 1px;
+  display: flex;
+  justify-content: center;
+  font-size: 28px;
+  text-align: center;
+  padding: 10px;
+  margin: 0 20px 20px 20px;
+
+  width: 550px;
+  height: 94px;
+  background-image: url(https://hd.unsplash.com/photo-1429479196389-7d1afeaa2d21);
+  background-size: cover;
+  background-position-y: 20%;
+}
+
+.weather p{
+  margin: 8px;
+}
+
+.loading{
+  margin-top: 30px;
+}
+
+/*tabs*/
+.tab-header{
+  width: 200px;
+  height: 30px;
+  margin: 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tab-header > span{
+  width: 65px;
+  border-top: 2px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 2px solid black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding-top: 4px;
+  text-align: center;
+  cursor: pointer;
+  background-color: lightblue;
+}
+
+.tab-header > span:first-child{
+  border-left: 2px solid black;
+}
+
+.tab-header > span:last-child{
+  border-right: 2px solid black;
+}
+
+.tab-header > span:hover{
+  background-color: black;
+  color: white;
+}
+
+.active{
+  font-weight: bold;
+}
+
+.tabs{
+  width: 240px;
+  height: 200px;
+}
+
+.tab-content{
+  font-weight: bold;
+  color: white;
+  height: 192px;
+  margin: 0 20px;
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(https://hd.unsplash.com/photo-1445112098124-3e76dd67983c);
+  background-size: cover;
+}
+
+.tab-content p{
+  text-align: center;
+}
+
+body{
+  display: flex;
+  justify-content: space-around;
+}
